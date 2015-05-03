@@ -14,3 +14,8 @@ Independent exercises (thought up by myself, though, Reddit itself is the design
 * feature: delete comments and posts: only authenticated user (and the user who posted the post or comment) (server and client)
 * feature: upvoting causes the downvote to go away, and vice versa.
 * feature: upvoting and already-upvoted (and vice versa) post/comment will un-upvote/downvote the post/comment
+
+###To run:
+1. ``cd`` to ``flapper-news`` root directory
+2. ``npm install``
+3. ```set DEBUG=flapper-news:server & npm start``` (Windows) | ```DEBUG=flapper-news:server npm start``` (Mac and Linux)
