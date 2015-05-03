@@ -6,7 +6,7 @@
     <span ng-hide="post.link">{{post.title}}</span>
   </h3>
 </div>
-<div ng-repeat="comment in post.comments | orderBy: '-(upvotes - downvotes)'">
+<div ng-repeat="comment in post.comments | orderBy: '-(upvotes - downvotes)'" ng-mouseenter="comment.hover = true" ng-mouseleave="comment.hover = false">
   {{comment.upvotes - comment.downvotes}}
   <a href="" ng-click="incrementUpvotes(comment)">
     <i class="fa fa-lg fa-thumbs-up" ng-class="getUpvoteColor(comment)" ng-mouseenter="comment.upvoteHover = true" ng-mouseleave="comment.upvoteHover = false"></i>
@@ -15,7 +15,7 @@
     <i class="fa fa-lg fa-thumbs-down" ng-class="getDownvoteColor(comment)" ng-mouseenter="comment.downvoteHover = true" ng-mouseleave="comment.downvoteHover = false"></i>
   </a> - by {{comment.author.username}}
   <span style="font-size:20px; margin-left:10px;">{{comment.body}}</span>
-  <div class="vertical-align pull-right" ng-show="showDeleteComment(comment)">
+  <div class="vertical-align pull-right" ng-show="showDeleteComment(comment) && comment.hover">
     <a href="" ng-click="deleteComment(comment)">
       <i class="fa fa-lg fa-remove text-danger"></i>
     </a>

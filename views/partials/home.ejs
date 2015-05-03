@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>Flapper News</h1>
 </div>
-<div ng-repeat="post in posts | orderBy: '-(upvotes - downvotes)'">
+<div ng-repeat="post in posts | orderBy: '-(upvotes - downvotes)'" ng-mouseenter="post.hover = true" ng-mouseleave="post.hover = false">
   {{post.upvotes - post.downvotes}}
   <a href="" ng-click="incrementUpvotes(post)"><i class="fa fa-lg fa-thumbs-up" ng-class="getUpvoteColor(post)" ng-mouseenter="post.upvoteHover = true" ng-mouseleave="post.upvoteHover = false"></i></a>
   <a href="" ng-click="incrementDownvotes(post)"><i class="fa fa-lg fa-thumbs-down" ng-class="getDownvoteColor(post)" ng-mouseenter="post.downvoteHover = true" ng-mouseleave="post.downvoteHover = false"></i></a>
@@ -20,7 +20,7 @@
   <span>
     <a ui-sref="post({ id: post._id })">Comments ({{post.comments.length}})</a>
   </span>
-  <div class="vertical-align pull-right" ng-show="showDeletePost(post)">
+  <div class="vertical-align pull-right" ng-show="showDeletePost(post) && post.hover">
     <a href="" ng-click="deletePost(post)">
       <i class="fa fa-lg fa-remove text-danger"></i>
     </a>
