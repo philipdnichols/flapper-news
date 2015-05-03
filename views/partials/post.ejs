@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h3>
+    <a ng-show="post.link" href="{{post.link}}">
+      {{post.title}}
+    </a>
+    <span ng-hide="post.link">{{post.title}}</span>
+  </h3>
+</div>
+<div ng-repeat="comment in post.comments | orderBy: '-(upvotes - downvotes)'">
+  {{comment.upvotes - comment.downvotes}}
+  <a href="" ng-click="incrementUpvotes(comment)">
+    <i class="fa fa-lg fa-thumbs-up" ng-class="getUpvoteColor(comment)" ng-mouseenter="comment.upvoteHover = true" ng-mouseleave="comment.upvoteHover = false"></i>
+  </a>
+  <a href="" ng-click="incrementDownvotes(comment)">
+    <i class="fa fa-lg fa-thumbs-down" ng-class="getDownvoteColor(comment)" ng-mouseenter="comment.downvoteHover = true" ng-mouseleave="comment.downvoteHover = false"></i>
+  </a> - by {{comment.author.username}}
+  <span style="font-size:20px; margin-left:10px;">{{comment.body}}</span>
+  <div class="vertical-align pull-right" ng-show="showDeleteComment(comment)">
+    <a href="" ng-click="deleteComment(comment)">
+      <i class="fa fa-lg fa-remove text-danger"></i>
+    </a>
+  </div>
+</div>
+<div style="margin-top:30px;">
+  <button ng-show="isLoggedIn() && !shouldShowAddNewCommentForm" ng-click="showAddNewCommentForm()" class="btn btn-primary">Add Comment</button>
+  <form role="form" ng-show="isLoggedIn() && shouldShowAddNewCommentForm" ng-submit="addComment()">
+    <div class="form-group has-feedback">
+      <label class="control-label" for="inputComment">Comment</label>
+      <input class="form-control" id="inputComment" placeholder="Comment" type="text" ng-model="body">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+    <button type "button" class="btn btn-cancel pull-right" ng-click="hideAddNewCommentForm()">Cancel</button>
+  </form>
+  <div ng-hide="isLoggedIn()">
+    <h3>You need to <a ui-sref="login">Log In</a> or <a ui-sref="register">Register</a> before you can add comment.</h3>
+  </div>
+</div>

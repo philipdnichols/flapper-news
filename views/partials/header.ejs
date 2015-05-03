@@ -1,0 +1,31 @@
+<div class="navbar navbar-default navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="home">
+        <span>Home</span>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-show="isLoggedIn()">
+          <a>{{ currentUser() }}</a>
+        </li>
+        <li ng-show="isLoggedIn()">
+          <a href="" ng-click="logOut()">Log Out</a>
+        </li>
+        <li ng-hide="isLoggedIn()">
+          <a ui-sref="login">Log In</a>
+        </li>
+        <li ng-hide="isLoggedIn()">
+          <a ui-sref="register">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
